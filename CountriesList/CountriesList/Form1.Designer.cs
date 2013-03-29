@@ -33,7 +33,7 @@
             this.btnGuess = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.tbShort = new System.Windows.Forms.TextBox();
+            this.tbCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbCaptial = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,6 +61,7 @@
             this.rbC1.TabIndex = 3;
             this.rbC1.TabStop = true;
             this.rbC1.UseVisualStyleBackColor = true;
+            this.rbC1.CheckedChanged += new System.EventHandler(this.rbC1_CheckedChanged);
             // 
             // btnNextQuestion
             // 
@@ -70,6 +71,7 @@
             this.btnNextQuestion.TabIndex = 2;
             this.btnNextQuestion.Text = "?";
             this.btnNextQuestion.UseVisualStyleBackColor = true;
+            this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
             // btnGuess
             // 
@@ -80,6 +82,7 @@
             this.btnGuess.TabIndex = 0;
             this.btnGuess.Text = "Погоди";
             this.btnGuess.UseVisualStyleBackColor = true;
+            this.btnGuess.Click += new System.EventHandler(this.btnGuess_Click);
             // 
             // btnRemove
             // 
@@ -89,6 +92,7 @@
             this.btnRemove.TabIndex = 9;
             this.btnRemove.Text = "Избриши";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -98,13 +102,14 @@
             this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Додади";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // tbShort
+            // tbCode
             // 
-            this.tbShort.Location = new System.Drawing.Point(10, 116);
-            this.tbShort.Name = "tbShort";
-            this.tbShort.Size = new System.Drawing.Size(100, 20);
-            this.tbShort.TabIndex = 7;
+            this.tbCode.Location = new System.Drawing.Point(10, 116);
+            this.tbCode.Name = "tbCode";
+            this.tbCode.Size = new System.Drawing.Size(100, 20);
+            this.tbCode.TabIndex = 7;
             // 
             // label5
             // 
@@ -149,6 +154,7 @@
             this.rbC3.TabIndex = 5;
             this.rbC3.TabStop = true;
             this.rbC3.UseVisualStyleBackColor = true;
+            this.rbC3.CheckedChanged += new System.EventHandler(this.rbC1_CheckedChanged);
             // 
             // rbC2
             // 
@@ -159,6 +165,7 @@
             this.rbC2.TabIndex = 4;
             this.rbC2.TabStop = true;
             this.rbC2.UseVisualStyleBackColor = true;
+            this.rbC2.CheckedChanged += new System.EventHandler(this.rbC1_CheckedChanged);
             // 
             // tbName
             // 
@@ -215,7 +222,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnRemove);
             this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.tbShort);
+            this.groupBox1.Controls.Add(this.tbCode);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tbCaptial);
             this.groupBox1.Controls.Add(this.label3);
@@ -235,6 +242,7 @@
             this.lbCountries.Name = "lbCountries";
             this.lbCountries.Size = new System.Drawing.Size(186, 368);
             this.lbCountries.TabIndex = 5;
+            this.lbCountries.SelectedIndexChanged += new System.EventHandler(this.lbCountries_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -272,7 +280,7 @@
         private System.Windows.Forms.Button btnGuess;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox tbShort;
+        private System.Windows.Forms.TextBox tbCode;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbCaptial;
         private System.Windows.Forms.Label label3;
