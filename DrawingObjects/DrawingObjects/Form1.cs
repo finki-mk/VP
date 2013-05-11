@@ -34,7 +34,7 @@ namespace DrawingObjects
             shapes = new List<Shape>();
             CurrentType = SHAPE_TYPE.CIRCLE;
             Brush = new SolidBrush(Color.Blue);            
-            this.DoubleBuffered = true;
+           this.DoubleBuffered = true;
         }
 
         private void DrawObjects(Graphics g)
@@ -114,8 +114,8 @@ namespace DrawingObjects
                     float dx = e.X - prevX;
                     float dy = e.Y - prevY;
                     selectedShape.Move(dx, dy);
-                }
-                Invalidate();
+                    Invalidate();
+                }                
                 prevX = e.X;
                 prevY = e.Y;
             }            
