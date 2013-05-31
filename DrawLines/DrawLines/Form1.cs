@@ -34,17 +34,17 @@ namespace DrawLines
             InitializeComponent();
             currentPoint = new Point();
             dashedPen = new Pen(Color.Black, 1);
-            dashedPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            dashedPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
             solidPen = new Pen(Color.Black, 3);
             DoubleBuffered = true;
             hasPosioner = true;
             linesDoc = new LinesDoc();
             width = 3;
-            
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
+            
             if (previusPoint.IsEmpty)
             {
                 previusPoint = new Point(e.X, e.Y);
@@ -56,7 +56,6 @@ namespace DrawLines
                 previusPoint = current;
                 Invalidate(true);
             }
-
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -103,9 +102,10 @@ namespace DrawLines
         {
             width = THICK_LINE;
         }
-
+        // Always is invoked with Invalidate(true);
         private void statusStrip1_Paint(object sender, PaintEventArgs e)
         {
+            toolStripStatusTest.Text = "NEKOE NOVO";
             toolStripStatusNumberOfLines.Text = string.Format("Total lines: {0}", linesDoc.Lines.Count);
             toolStripStatusPosition.Text = string.Format("{0}, {1}", currentPoint.X, currentPoint.Y);
         }

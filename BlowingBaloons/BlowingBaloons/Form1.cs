@@ -36,6 +36,8 @@ namespace BlowingBalloons
             Invalidate(true);
         }
 
+     
+
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             balloonsDoc.AddBalloon(new Point(e.X, e.Y));
@@ -132,7 +134,7 @@ namespace BlowingBalloons
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            balloonsDoc.AddBalloon(new Point(e.X, e.Y));
+            balloonsDoc.AddBalloon(new Point(e.X, e.Y));            
             Invalidate(true);
         }
 
