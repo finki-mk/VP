@@ -339,6 +339,7 @@
             this.tbCodeToEnter.Name = "tbCodeToEnter";
             this.tbCodeToEnter.Size = new System.Drawing.Size(121, 20);
             this.tbCodeToEnter.TabIndex = 0;
+            this.tbCodeToEnter.TextChanged += new System.EventHandler(this.tbCodeToEnter_TextChanged);
             // 
             // label8
             // 

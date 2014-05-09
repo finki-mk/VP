@@ -13,16 +13,13 @@ namespace DrawingObjects
 
         public bool Selected { get; set; }
 
-        public Brush Brush { get; set; }
+        public Color Color { get; set; }
 
-        public Pen SelectedPen { get; set; }
-
-        public Shape(float x, float y, Brush brush)
+        public Shape(float x, float y, Color color)
         {
             X = x;
             Y = y;
-            Brush = brush;
-            SelectedPen = new Pen(Color.Red, 3);
+            Color = color;
         }
 
         public abstract void Draw(Graphics g);

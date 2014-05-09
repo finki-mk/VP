@@ -60,7 +60,7 @@ namespace SportsBets
                 Game game = new Game();
                 game.Code = mtbCode.Text;
                 game.HomeTeam = lbTeams.SelectedItems[0] as Team;
-                game.GuestTeam = lbTeams.SelectedItems[1] as Team;
+                game.GuestTeam = (Team)lbTeams.SelectedItems[1];
                 game.Coefitients[0] = (float)nudCoef1.Value;
                 game.Coefitients[1] = (float)nudCoefX.Value;
                 game.Coefitients[2] = (float)nudCoef2.Value;
@@ -101,7 +101,7 @@ namespace SportsBets
         {
             if (lbGames.SelectedIndex != -1 && cbTip.SelectedIndex != -1)
             {
-                Game game = lbGames.SelectedItem as Game;
+                Game game = (Game)lbGames.SelectedItem;
                 TicketItem ti = new TicketItem();
                 ti.Game = game;
                 ti.Tip = cbTip.SelectedIndex;
@@ -152,6 +152,11 @@ namespace SportsBets
         private void btnPrint_Click(object sender, EventArgs e)
         {
             MessageBox.Show(string.Format("За вложени {0:0.0} добивката е {1}", nudPayment.Value, tbProfit.Text));
+        }
+
+        private void tbCodeToEnter_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     

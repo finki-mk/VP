@@ -10,7 +10,7 @@ namespace DrawingObjects
     {
         public float Radius { get; set; }
 
-        public Circle(float x, float y, float radius, Brush brush) : base(x, y, brush)
+        public Circle(float x, float y, float radius, Color color) : base(x, y, color)
         {
             Radius = radius;
         }
@@ -19,11 +19,16 @@ namespace DrawingObjects
 
         public override void Draw(Graphics g)
         {
-            g.FillEllipse(Brush, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
+            Brush b = new SolidBrush(Color);
+            g.FillEllipse(b, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
             if (Selected)
             {
-                g.DrawEllipse(SelectedPen, X - Radius, Y - Radius, 2 * Radius, 2 * Radius); 
+                Pen pen = new Pen(Color.Red, 3);
+                g.DrawEllipse(pen, X - Radius, Y - Radius, 2 * Radius, 2 * Radius);
+                pen.Dispose();
             }
+            b.Dispose();
+
         }
 
         public override bool IsHit(float x, float y)

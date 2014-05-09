@@ -11,14 +11,13 @@ namespace DrawingObjects
 {
     public partial class Form1 : Form
     {
-        private List<Shape> shapes;
+        private ShapesList shapesList;
 
         private SHAPE_TYPE CurrentType;
-
-        private Brush Brush;
-        private static readonly float SIZE = 30;
+        private Color currentColor;
         private bool mouseDown;
         private Shape selectedShape;
+
         private float prevX;
         private float prevY;
 
@@ -31,20 +30,13 @@ namespace DrawingObjects
         public Form1()
         {
             InitializeComponent();
-            shapes = new List<Shape>();
+            shapesList = new ShapesList();
             CurrentType = SHAPE_TYPE.CIRCLE;
-            Brush = new SolidBrush(Color.Blue);            
-           this.DoubleBuffered = true;
+            currentColor = Color.Blue;
+            this.DoubleBuffered = true;
         }
 
-        private void DrawObjects(Graphics g)
-        {
-            g.Clear(Color.White);
-            foreach (Shape shape in shapes)
-            {
-                shape.Draw(g);
-            }
-        }
+      
 
         private void menuItemClicked(object sender, EventArgs e)
         {
@@ -64,43 +56,29 @@ namespace DrawingObjects
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Shape shape = null;
+            
             if (CurrentType == SHAPE_TYPE.CIRCLE)
             {
-                shape = new Circle(e.X, e.Y, SIZE, Brush);
-
+                shapesList.AddShape(e.X, e.Y, currentColor, ShapesList.SHAPE_TYPE.CIRCLE);
             }
             else if (CurrentType == SHAPE_TYPE.SQUARE)
             {
-                shape = new Square(e.X, e.Y, SIZE * 2, SIZE * 2, Brush);
+                shapesList.AddShape(e.X, e.Y, currentColor, ShapesList.SHAPE_TYPE.SQUARE);
             }
-            shapes.Add(shape);
+            
             Invalidate();
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach (Shape shape in shapes)
-            {
-                if (shape.IsHit(e.X, e.Y))
-                {
-                    shape.Selected = !shape.Selected;
-                }
-            }
+            shapesList.Select(e.X, e.Y);
             Invalidate();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            selectedShape = null;
-            foreach (Shape shape in shapes)
-            {
-                if (shape.IsHit(e.X, e.Y))
-                {
-                    selectedShape = shape;
-                }
-            }
+            selectedShape = shapesList.Select(e.X, e.Y);
             prevX = e.X;
             prevY = e.Y;
         }
@@ -132,13 +110,14 @@ namespace DrawingObjects
             DialogResult result = colorDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                Brush = new SolidBrush(colorDialog.Color);
+                currentColor = colorDialog.Color;
             }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            DrawObjects(e.Graphics);
+            e.Graphics.Clear(Color.White);
+            shapesList.Draw(e.Graphics);
         }
     }
 }

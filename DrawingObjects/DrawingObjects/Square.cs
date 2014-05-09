@@ -12,8 +12,8 @@ namespace DrawingObjects
 
         public float Height { get; set; }
 
-        public Square(float x, float y, float width, float height, Brush brush)
-            : base(x, y, brush)
+        public Square(float x, float y, float width, float height, Color color)
+            : base(x, y, color)
         {
             Width = width;
             Height = height;
@@ -21,11 +21,15 @@ namespace DrawingObjects
 
         public override void Draw(Graphics g)
         {
-            g.FillRectangle(Brush, X - Width / 2, Y - Width / 2, Width, Height);
+            Brush b = new SolidBrush(Color);
+            g.FillRectangle(b, X - Width / 2, Y - Width / 2, Width, Height);
             if (Selected)
             {
-                g.DrawRectangle(SelectedPen, X - Width / 2, Y - Width / 2, Width, Height);
+                Pen p = new Pen(Color.Red, 3);
+                g.DrawRectangle(p, X - Width / 2, Y - Width / 2, Width, Height);
+                p.Dispose();
             }
+            b.Dispose();
         }
 
         public override bool IsHit(float x, float y)
