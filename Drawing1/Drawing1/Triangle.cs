@@ -30,5 +30,10 @@ namespace Drawing1
         {
             return false;
         }
+
+        public override void Pulse(int percent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

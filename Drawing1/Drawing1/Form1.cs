@@ -11,51 +11,66 @@ namespace Drawing1
 {
     public partial class Form1 : Form
     {
-        List<Shape> shapes;
-        Color currentColor;
+
+        Scene scene;
+        Timer timer;
         public Form1()
         {
             InitializeComponent();
-            shapes = new List<Shape>();
-            currentColor = Color.Violet;
+            scene = new Scene();
+            //this.DoubleBuffered = true;
+            timer = new Timer();
+            timer.Interval = 50;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+            
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            scene.Pulse(250);
+            Invalidate();
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Shape c = null;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                c = new Circle(e.Location, currentColor);
-            }
+                scene.AddShape(e.Location, Scene.ShapeType.CIRCLE);
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                c = new Triangle(e.Location, currentColor, new Point(e.Location.X + 20, e.Location.Y),
-                    new Point(e.Location.X, e.Location.Y + 30));
-            }
-            shapes.Add(c);
+                scene.AddShape(e.Location, Scene.ShapeType.TRIANGLE);
             Invalidate();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.Clear(Color.Yellow);
-            foreach (Shape s in shapes)
-            {
-                s.Draw(e.Graphics);
-            }
+            e.Graphics.Clear(Color.Aquamarine);
+            scene.Draw(e.Graphics);
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            Random r = new Random();
-            foreach (Shape s in shapes)
+            
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            scene.Select(e.Location);
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (scene.SelectedShape)
             {
-                if (s.Clicked(e.Location))
-                {
-                    Color c = Color.FromArgb(r.Next(256), r.Next(256), r.Next(256));
-                    s.Color = c;
-                    Invalidate();
-                }
+                scene.MoveShape(e.Location);
+                Invalidate();
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (scene.SelectedShape)
+            {
+                scene.ClearSelected();
+                Invalidate();
             }
         }
 
