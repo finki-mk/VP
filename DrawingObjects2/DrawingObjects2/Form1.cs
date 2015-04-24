@@ -18,7 +18,7 @@ namespace Drawing1
         {
             InitializeComponent();
             scene = new Scene();
-            //this.DoubleBuffered = true;
+            this.DoubleBuffered = true;
             timer = new Timer();
             timer.Interval = 50;
             timer.Tick += new EventHandler(timer_Tick);
