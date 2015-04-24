@@ -24,7 +24,7 @@ namespace DrawLines2
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             document.AddLine(e.Location);
-            Invalidate();
+            Invalidate(true);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -60,7 +60,7 @@ namespace DrawLines2
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             document.UpdateLocation(e.Location);
-            Invalidate();
+            Invalidate(true);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -87,10 +87,36 @@ namespace DrawLines2
         private void colorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (colorDialog.ShowDialog() == 
+                System.Windows.Forms.DialogResult.OK)
             {
                 document.CurrentColor = colorDialog.Color;
             }
         }
+
+        private void positionerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            document.Positioner = positionerToolStripMenuItem.Checked;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            document = new LinesDocument(Width, Height);
+            Invalidate(true);
+        }
+
+        private void toolStripStatusLabelLines_Paint(object sender, PaintEventArgs e)
+        {
+            toolStripStatusLabelLines.Text = string.Format("Lines: {0}", document.GetLinesCount());
+            toolStripStatusLabel1.Text = string.Format("X: {0}, Y: {1}", document.CurrentLocation.X, document.CurrentLocation.Y);
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            document.Undo();
+            Invalidate(true);
+        }
+
+       
     }
 }
