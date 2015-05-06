@@ -73,9 +73,9 @@
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbStartStop = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusTotal = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsbStartStop = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -437,6 +437,16 @@
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             // 
+            // tsbStartStop
+            // 
+            this.tsbStartStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbStartStop.Image = ((System.Drawing.Image)(resources.GetObject("tsbStartStop.Image")));
+            this.tsbStartStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbStartStop.Name = "tsbStartStop";
+            this.tsbStartStop.Size = new System.Drawing.Size(42, 22);
+            this.tsbStartStop.Text = "Старт";
+            this.tsbStartStop.Click += new System.EventHandler(this.tsbStartStop_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -453,16 +463,6 @@
             this.toolStripStatusTotal.Name = "toolStripStatusTotal";
             this.toolStripStatusTotal.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsbStartStop
-            // 
-            this.tsbStartStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbStartStop.Image = ((System.Drawing.Image)(resources.GetObject("tsbStartStop.Image")));
-            this.tsbStartStop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbStartStop.Name = "tsbStartStop";
-            this.tsbStartStop.Size = new System.Drawing.Size(42, 22);
-            this.tsbStartStop.Text = "Старт";
-            this.tsbStartStop.Click += new System.EventHandler(this.tsbStartStop_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +474,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Ticking Pies";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.menuStrip1.ResumeLayout(false);

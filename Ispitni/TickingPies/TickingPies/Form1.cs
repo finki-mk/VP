@@ -156,5 +156,10 @@ namespace Zad2
             }
             isRunning = !isRunning;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
