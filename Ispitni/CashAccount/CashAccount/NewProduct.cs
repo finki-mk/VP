@@ -18,11 +18,6 @@ namespace Zadaca1
             InitializeComponent();
         }
 
-        private void tbName_TextChanged(object sender, EventArgs e)
-        {
-            btnAdd.Enabled = tbName.Text.Trim().Length > 0;
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Product = new Product((int)nudCode.Value, tbName.Text, (float)nudPrice.Value);
@@ -34,6 +29,20 @@ namespace Zadaca1
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Close();
+        }
+
+        private void tbName_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbName.Text.Trim().Length > 0)
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(tbName, null);
+            }
+            else
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(tbName, "Името на продуктот е задолжително");
+            }
         }
 
 

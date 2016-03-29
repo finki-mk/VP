@@ -10,29 +10,28 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ColorRectangles
+namespace ColorCircles
 {
     public partial class Form1 : Form
     {
-        private RectanglesDoc doc;
+        private CirclesDoc doc;
         private Point currentPoint;
         private Point previousPoint;
         private Color currentColor;
         private string FileName;
-        private int x, y;
-        private int width, height;
+        private int radius;
 
         public Form1()
         {
             InitializeComponent();
             newDoc();
             this.DoubleBuffered = true;
-            currentColor = Color.Blue;
+            currentColor = Color.Green;
         }
 
         private void newDoc()
         {
-            doc = new RectanglesDoc();
+            doc = new CirclesDoc();
             previousPoint = Point.Empty;
             currentPoint = Point.Empty;
             FileName = "Untitled";
@@ -48,7 +47,7 @@ namespace ColorRectangles
                 }
                 else
                 {
-                    doc.AddRectangle(new Point(x, y), width, height, currentColor);
+                    doc.AddCircle(previousPoint, radius, currentColor);
                     previousPoint = Point.Empty;
                     currentPoint = Point.Empty;
                 }
@@ -64,12 +63,7 @@ namespace ColorRectangles
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             currentPoint = e.Location;
-            x = previousPoint.X;
-            y = previousPoint.Y;
-            if (x > currentPoint.X) x = currentPoint.X;
-            if (y > currentPoint.Y) y = currentPoint.Y;
-            width = Math.Abs(previousPoint.X - currentPoint.X);
-            height = Math.Abs(previousPoint.Y - currentPoint.Y);
+            radius = (int)Math.Sqrt(Circle.Distance(currentPoint, previousPoint));
             Invalidate();
         }
 
@@ -79,9 +73,9 @@ namespace ColorRectangles
             doc.Draw(e.Graphics);
             if (!previousPoint.IsEmpty)
             {
-                Pen linePen = new Pen(Color.Black, 2);
+                Pen linePen = new Pen(Color.Black, 3);
                 linePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                e.Graphics.DrawRectangle(linePen, x, y, width, height);
+                e.Graphics.DrawEllipse(linePen, previousPoint.X - radius, previousPoint.Y - radius, radius * 2, radius * 2);
                 linePen.Dispose();
             }
         }
@@ -108,11 +102,16 @@ namespace ColorRectangles
                 doc.DeleteSelected();
                 Invalidate(true);
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                previousPoint = Point.Empty;
+                Invalidate();
+            }
         }
 
         private void statusStrip1_Paint(object sender, PaintEventArgs e)
         {
-            toolStripStatusLabel1.Text = string.Format("Rectangles: {0}", doc.Rectangles.Count);
+            toolStripStatusLabel1.Text = string.Format("Circles: {0}", doc.Circles.Count);
         }
 
         private void colorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,8 +128,8 @@ namespace ColorRectangles
             if (FileName == "Untitled")
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Rectanges doc file (*.rct)|*.rct";
-                saveFileDialog.Title = "Save rectanges doc";
+                saveFileDialog.Filter = "Circles doc file (*.crl)|*.crl";
+                saveFileDialog.Title = "Save circles doc";
                 saveFileDialog.FileName = FileName;
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -149,8 +148,8 @@ namespace ColorRectangles
         private void openFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Rectanges doc file (*.rct)|*.rct";
-            openFileDialog.Title = "Open rectanges doc file";
+            openFileDialog.Filter = "Circles doc file (*.crl)|*.crl";
+            openFileDialog.Title = "Open Circles doc file";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 FileName = openFileDialog.FileName;
@@ -159,7 +158,7 @@ namespace ColorRectangles
                     using (FileStream fileStream = new FileStream(FileName, FileMode.Open))
                     {
                         IFormatter formater = new BinaryFormatter();
-                        doc = (RectanglesDoc)formater.Deserialize(fileStream);
+                        doc = (CirclesDoc)formater.Deserialize(fileStream);
                     }
                 }
                 catch (Exception ex)

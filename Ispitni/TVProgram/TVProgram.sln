@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVProgram", "TVProgram\TVProgram.csproj", "{BEC72D03-B51F-4B70-A3D9-DB30E5694BD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC72D03-B51F-4B70-A3D9-DB30E5694BD0}.Debug|x86.ActiveCfg = Debug|x86
+		{BEC72D03-B51F-4B70-A3D9-DB30E5694BD0}.Debug|x86.Build.0 = Debug|x86
+		{BEC72D03-B51F-4B70-A3D9-DB30E5694BD0}.Release|x86.ActiveCfg = Release|x86
+		{BEC72D03-B51F-4B70-A3D9-DB30E5694BD0}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
