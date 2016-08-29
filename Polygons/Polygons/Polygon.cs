@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace Polygons
 {
+    [Serializable]
     public class Polygon
     {
         public List<Point> Points { get; set; }
@@ -13,6 +14,7 @@ namespace Polygons
         public Color Color { get; set; }
 
         public bool IsClosed { get; set; }
+        
 
         public Polygon(Color color)
         {
@@ -28,22 +30,24 @@ namespace Polygons
 
         public void Draw(Graphics g)
         {
+            Brush b = new SolidBrush(Color);
+            Pen p = new Pen(Color.Black, 1);
             if (IsClosed)
             {
-                Brush b = new SolidBrush(Color);
                 g.FillPolygon(b, Points.ToArray());
-                b.Dispose();
             }
             else
             {
-                Pen p = new Pen(Color.Black, 1);
+             
                 g.DrawLines(p, Points.ToArray());
                 //for (int i = 0; i < Points.Count - 1; ++i)
                 //{
                 //    g.DrawLine(p, Points[i], Points[i + 1]);
                 //}
-                p.Dispose();
+                
             }
+            b.Dispose();
+            p.Dispose();
         }
 
         public Point LastPoint

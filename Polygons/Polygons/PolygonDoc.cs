@@ -6,16 +6,17 @@ using System.Drawing;
 
 namespace Polygons
 {
+    [Serializable]
     public class PolygonDoc
     {
-        List<Polygon> poligons;
+        private List<Polygon> poligons;
 
         public Color Color { get; set; }
 
-        Point firstPoint;
-        Polygon currentPolygon;
-        Point currentPoint;
-        bool isHit;
+        private Point firstPoint;
+        private Polygon currentPolygon;
+        private Point currentPoint;
+        private bool isHit;
 
         public PolygonDoc()
         {
@@ -40,6 +41,7 @@ namespace Polygons
                 {
                     currentPolygon.IsClosed = true;
                     poligons.Add(currentPolygon);
+                    currentPolygon = null;
                     firstPoint = Point.Empty;
                 }
                 
@@ -54,7 +56,7 @@ namespace Polygons
             {
                 if (currentPolygon.Points.Count > 2)
                 {
-                    isHit = distance(firstPoint, currentPoint) <= 25;
+                    isHit = distance(firstPoint, currentPoint) <= 5 * 5;
                 }
             }
         }
@@ -84,7 +86,7 @@ namespace Polygons
                 g.DrawLine(p, currentPolygon.LastPoint, currentPoint);
                 if (isHit)
                 {
-                    g.DrawRectangle(p, firstPoint.X - 5, firstPoint.Y - 5,
+                    g.DrawEllipse(p, firstPoint.X - 5, firstPoint.Y - 5,
                         10, 10);
                 }
                 p.Dispose();
