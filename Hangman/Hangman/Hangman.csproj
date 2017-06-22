@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayWordSelector.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HangmanWord.cs" />
+    <Compile Include="IWordSelector.cs" />
     <Compile Include="Password.cs">
       <SubType>Form</SubType>
     </Compile>

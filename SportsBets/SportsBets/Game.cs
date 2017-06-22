@@ -5,21 +5,16 @@ using System.Text;
 
 namespace SportsBets
 {
-    class Game
+    public class Game
     {
-        public Team HomeTeam { get; set; }
-        public Team GuestTeam { get; set; }
-        public float[] Coefitients { get; set; }
+        public Team Home { get; set; }
+        public Team Away { get; set; }
         public string Code { get; set; }
+        public decimal[] Coeffietients { get; set; }
+
         public Game()
         {
-            Coefitients = new float[3];
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0}: {1}-{2} {3:0.00} {4:0.00} {5:0.00}", 
-                Code, HomeTeam.Name, GuestTeam.Name, Coefitients[0], Coefitients[1], Coefitients[2]);
+            Coeffietients = new decimal[3];
         }
     }
 }

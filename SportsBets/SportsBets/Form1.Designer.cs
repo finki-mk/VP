@@ -120,7 +120,6 @@
             this.mtbCode.Name = "mtbCode";
             this.mtbCode.Size = new System.Drawing.Size(100, 20);
             this.mtbCode.TabIndex = 11;
-            this.mtbCode.Validating += new System.ComponentModel.CancelEventHandler(this.mtbCode_Validating);
             // 
             // label9
             // 
@@ -331,7 +330,6 @@
             this.btnAddGame.TabIndex = 2;
             this.btnAddGame.Text = "Додади натпревар";
             this.btnAddGame.UseVisualStyleBackColor = true;
-            this.btnAddGame.Click += new System.EventHandler(this.btnAddGame_Click);
             // 
             // tbCodeToEnter
             // 
@@ -339,7 +337,6 @@
             this.tbCodeToEnter.Name = "tbCodeToEnter";
             this.tbCodeToEnter.Size = new System.Drawing.Size(121, 20);
             this.tbCodeToEnter.TabIndex = 0;
-            this.tbCodeToEnter.TextChanged += new System.EventHandler(this.tbCodeToEnter_TextChanged);
             // 
             // label8
             // 
@@ -409,7 +406,6 @@
             0,
             0,
             0});
-            this.nudPayment.ValueChanged += new System.EventHandler(this.nudPayment_ValueChanged);
             // 
             // btnPrint
             // 
@@ -419,7 +415,6 @@
             this.btnPrint.TabIndex = 3;
             this.btnPrint.Text = "Печати";
             this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // tbProfit
             // 

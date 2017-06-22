@@ -5,16 +5,10 @@ using System.Text;
 
 namespace SportsBets
 {
-   public class Team
+    public class Team
     {
         public string Name { get; set; }
         public string Country { get; set; }
-
-        public Team(string Name, string Country)
-        {
-            this.Name = Name;
-            this.Country = Country;
-        }
 
         public override string ToString()
         {

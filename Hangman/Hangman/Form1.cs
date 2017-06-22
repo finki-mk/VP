@@ -11,26 +11,16 @@ namespace Hangman
 {
     public partial class Form1 : Form
     {
-        private string[] words = {
-                                   "Argentina",
-                                   "Australia",
-                                   "Greenland",
-                                   "Guatemala",
-                                   "Indonesia",
-                                   "Lithuania",
-                                   "Macedonia",
-                                   "Mauritius",
-                                   "Nicaragua",
-                                   "Venezuela"
-                                 };
         /// <summary>
         /// Објект од класата која ги содржи сите информации за играта.
         /// </summary>
         private HangmanWord hangmanWord;
+
+        private IWordSelector wordSelector;
         /// <summary>
         /// Времетраење на играта во секунди.
         /// </summary>
-        private static readonly int TIME = 120; 
+        private static readonly int TIME = 60 * 10; 
         /// <summary>
         /// Изминато време во секунди.
         /// </summary>
@@ -39,6 +29,7 @@ namespace Hangman
         public Form1()
         {
             InitializeComponent();
+            wordSelector = new ArrayWordSelector();
             newGame();
         }
         /// <summary>
@@ -46,9 +37,7 @@ namespace Hangman
         /// </summary>
         private void newGame()
         {
-            Random r = new Random();
-            int index = r.Next(words.Length);
-            hangmanWord = new HangmanWord(words[index]);
+            hangmanWord = new HangmanWord(wordSelector.pick());
             updateWordMask();
             updateGuessedLetters();
             timeElapsed = 0;
