@@ -149,6 +149,11 @@
             0,
             65536});
             this.nudCoef2.Location = new System.Drawing.Point(32, 109);
+            this.nudCoef2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCoef2.Name = "nudCoef2";
             this.nudCoef2.Size = new System.Drawing.Size(120, 20);
             this.nudCoef2.TabIndex = 2;
@@ -167,6 +172,11 @@
             0,
             65536});
             this.nudCoefX.Location = new System.Drawing.Point(32, 83);
+            this.nudCoefX.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCoefX.Name = "nudCoefX";
             this.nudCoefX.Size = new System.Drawing.Size(120, 20);
             this.nudCoefX.TabIndex = 1;
@@ -330,6 +340,7 @@
             this.btnAddGame.TabIndex = 2;
             this.btnAddGame.Text = "Додади натпревар";
             this.btnAddGame.UseVisualStyleBackColor = true;
+            this.btnAddGame.Click += new System.EventHandler(this.btnAddGame_Click);
             // 
             // tbCodeToEnter
             // 
@@ -406,6 +417,8 @@
             0,
             0,
             0});
+            this.nudPayment.ValueChanged += new System.EventHandler(this.nudPayment_ValueChanged);
+            this.nudPayment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.nudPayment_KeyUp);
             // 
             // btnPrint
             // 
@@ -415,6 +428,7 @@
             this.btnPrint.TabIndex = 3;
             this.btnPrint.Text = "Печати";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // tbProfit
             // 

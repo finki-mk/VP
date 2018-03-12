@@ -16,5 +16,9 @@ namespace SportsBets
         {
             Coeffietients = new decimal[3];
         }
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} vs. {2}",Code,Home,Away);
+        }
     }
 }
